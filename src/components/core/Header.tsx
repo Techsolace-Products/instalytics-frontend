@@ -32,7 +32,7 @@ const Header = () => {
         <div className="max-w-[1300px] m-auto">
           <div className="p-8 bg-black flex justify-between items-center">
             <div className="flex-[1]">
-              <Image src={Logo} alt="InstaLytics" width={100} height={100} />
+              <Link href="/"><Image src={Logo} alt="InstaLytics" width={100} height={100} /></Link>
             </div>
 
             <button
@@ -53,13 +53,13 @@ const Header = () => {
 
             <div className="hidden lg:flex flex-[1] flex-wrap gap-2 items-center justify-end">
               <Link
-                href="#"
+                href="/login"
                 className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold"
               >
                 Login
               </Link>
               <Link
-                href="#"
+                href="/register"
                 className="border-white border-[2px] px-3 py-2 text-sm text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold"
               >
                 Get Started <MdKeyboardDoubleArrowRight />
@@ -110,14 +110,14 @@ const Header = () => {
               
               <div className="mt-4 flex flex-col gap-3 w-full">
                 <Link
-                  href="#"
+                  href="/login"
                   onClick={handleLinkClick}
                   className="border-white border-[2px] px-4 py-2 text-sm text-white rounded-2xl flex items-center justify-center gap-2 font-semibold w-full hover:bg-white hover:text-black transition-colors"
                 >
                   Login
                 </Link>
                 <Link
-                  href="#"
+                  href="/register"
                   onClick={handleLinkClick}
                   className="border-white border-[2px] px-4 py-2 text-sm text-black bg-white rounded-2xl flex items-center justify-center gap-2 font-semibold w-full hover:bg-transparent hover:text-white transition-colors"
                 >
