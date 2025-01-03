@@ -17,7 +17,7 @@ const Team = () => {
             <h1 className="text-white text-4xl font-semibold">
               Meet the Minds Behind InstaLytics
             </h1>
-            <Image src={Shape6} width={120} height={120} alt="Shape1" />
+            <Image src={Shape6} width={120} height={120} alt="Shape1" className="m-auto" />
           </div>
           <p className="text-center text-white">
             We are a dedicated crew of innovators, creators, and community
