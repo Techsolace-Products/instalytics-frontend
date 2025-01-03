@@ -3,6 +3,7 @@ import Logo from "@/../public/authorLogo.png";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa6";
 import Shape6 from "@/../public/shape6.png";
+import Link from "next/link";
 const Team = () => {
   return (
     <>
@@ -17,7 +18,13 @@ const Team = () => {
             <h1 className="text-white text-4xl font-semibold">
               Meet the Minds Behind InstaLytics
             </h1>
-            <Image src={Shape6} width={120} height={120} alt="Shape1" className="m-auto" />
+            <Image
+              src={Shape6}
+              width={120}
+              height={120}
+              alt="Shape1"
+              className="m-auto"
+            />
           </div>
           <p className="text-center text-white">
             We are a dedicated crew of innovators, creators, and community
@@ -31,9 +38,14 @@ const Team = () => {
             alt="Author Logo"
             className="rounded-full mt-5"
           />
-          <p className="text-black flex bg-white rounded-lx items-center gap-2 font-semibold py-2 px-4 rounded-xl">
+          <Link
+            href="https://github.com/techsolace"
+            target="_blank"
+            className="text-black flex bg-white rounded-lx items-center gap-2 font-semibold py-2 px-4 rounded-xl 
+            transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 hover:shadow-lg"
+          >
             Techsolace <FaGithub />
-          </p>
+          </Link>
         </div>
       </div>
     </>

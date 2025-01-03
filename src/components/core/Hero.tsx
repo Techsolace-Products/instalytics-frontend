@@ -31,25 +31,25 @@ const Hero = () => {
         </p>
         <div className="flex flex-wrap items-center justify-between gap-8">
           <FaRegComments
-            className="text-white p-2 bg-purple-700 rounded-lg"
+            className="text-white p-2 bg-purple-700 rounded-lg transform transition-all duration-300 hover:scale-110 hover:bg-purple-800 cursor-pointer"
             size="38"
           />
           <FaRegHeart
-            className="text-white p-2 bg-red-700 rounded-lg"
+            className="text-white p-2 bg-red-700 rounded-lg transform transition-all duration-300 hover:scale-110 hover:bg-red-800 cursor-pointer"
             size="38"
           />
           <IoMdPaperPlane
-            className="text-white p-2 bg-blue-700 rounded-lg"
+            className="text-white p-2 bg-blue-700 rounded-lg transform transition-all duration-300 hover:scale-110 hover:bg-blue-800 cursor-pointer"
             size="38"
           />
           <IoShareSocialOutline
-            className="text-white p-2 bg-orange-700 rounded-lg"
+            className="text-white p-2 bg-orange-700 rounded-lg transform transition-all duration-300 hover:scale-110 hover:bg-orange-800 cursor-pointer"
             size="38"
           />
         </div>
         <Link
           href="#"
-          className="border-white border-[2px] px-3 py-2 mb-10 text-m text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold"
+          className="border-white border-[2px] px-3 py-2 mb-10 text-m text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-transparent hover:text-white transition-all duration-300"
         >
           Get Started <MdKeyboardDoubleArrowRight />
         </Link>

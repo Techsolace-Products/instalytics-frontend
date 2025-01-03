@@ -53,12 +53,12 @@ const page = () => {
             <input
               type="text"
               placeholder="Email or Username"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white"
+              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
             />
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white"
+              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
             />
             <button className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4">
               Login <BsArrowRight />
@@ -73,19 +73,19 @@ const page = () => {
 
           <div className="flex flex-wrap items-center justify-between gap-8">
             <FaRegComments
-              className="text-white p-2 bg-purple-700 rounded-lg"
+              className="text-white p-2 bg-purple-700 rounded-lg transition-all duration-300 hover:scale-110 hover:bg-purple-600 cursor-pointer"
               size="38"
             />
             <FaRegHeart
-              className="text-white p-2 bg-red-700 rounded-lg"
+              className="text-white p-2 bg-red-700 rounded-lg transition-all duration-300 hover:scale-110 hover:bg-red-600 cursor-pointer"
               size="38"
             />
             <IoMdPaperPlane
-              className="text-white p-2 bg-blue-700 rounded-lg"
+              className="text-white p-2 bg-blue-700 rounded-lg transition-all duration-300 hover:scale-110 hover:bg-blue-600 cursor-pointer"
               size="38"
             />
             <IoShareSocialOutline
-              className="text-white p-2 bg-orange-700 rounded-lg"
+              className="text-white p-2 bg-orange-700 rounded-lg transition-all duration-300 hover:scale-110 hover:bg-orange-600 cursor-pointer"
               size="38"
             />
           </div>

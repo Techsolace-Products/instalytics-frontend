@@ -32,7 +32,9 @@ const Header = () => {
         <div className="max-w-[1300px] m-auto">
           <div className="p-8 bg-black flex justify-between items-center">
             <div className="flex-[1]">
-              <Link href="/"><Image src={Logo} alt="InstaLytics" width={100} height={100} /></Link>
+              <Link href="/">
+                <Image src={Logo} alt="InstaLytics" width={100} height={100} />
+              </Link>
             </div>
 
             <button
@@ -42,25 +44,39 @@ const Header = () => {
               {isMenuOpen ? <HiX /> : <HiMenu />}
             </button>
 
-            <div className="hidden lg:flex flex-[1]">
-              <nav className="text-white flex-wrap gap-10 font-light flex items-center justify-center">
-                <Link href="/">Home</Link>
-                <Link href="#features">Features</Link>
-                <Link href="#about">About</Link>
-                <Link href="#developers">Developers</Link>
+            <div className="hidden lg:flex flex-[2] justify-center">
+              <nav className="text-white flex-wrap gap-10 font-light flex items-center">
+                <Link
+                  href="/"
+                  className="hover:text-gray-300 transition-colors duration-300"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="#features"
+                  className="hover:text-gray-300 transition-colors duration-300"
+                >
+                  Features
+                </Link>
+                <Link
+                  href="#developers"
+                  className="hover:text-gray-300 transition-colors duration-300"
+                >
+                  Team
+                </Link>
               </nav>
             </div>
 
             <div className="hidden lg:flex flex-[1] flex-wrap gap-2 items-center justify-end">
               <Link
                 href="/login"
-                className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold"
+                className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-white hover:text-black transition-all duration-300"
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="border-white border-[2px] px-3 py-2 text-sm text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold"
+                className="border-white border-[2px] px-3 py-2 text-sm text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-transparent hover:text-white transition-all duration-300"
               >
                 Get Started <MdKeyboardDoubleArrowRight />
               </Link>
@@ -75,39 +91,39 @@ const Header = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="flex flex-col py-4 text-white gap-4 pt-20 px-8">
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 onClick={handleLinkClick}
                 className="flex items-center justify-between w-full hover:text-gray-300 transition-colors"
               >
                 <span>Home</span>
                 <IoIosArrowForward />
               </Link>
-              <Link 
-                href="#features" 
+              <Link
+                href="#features"
                 onClick={handleLinkClick}
                 className="flex items-center justify-between w-full hover:text-gray-300 transition-colors"
               >
                 <span>Features</span>
                 <IoIosArrowForward />
               </Link>
-              <Link 
-                href="#about" 
+              <Link
+                href="#about"
                 onClick={handleLinkClick}
                 className="flex items-center justify-between w-full hover:text-gray-300 transition-colors"
               >
                 <span>About</span>
                 <IoIosArrowForward />
               </Link>
-              <Link 
-                href="#developers" 
+              <Link
+                href="#developers"
                 onClick={handleLinkClick}
                 className="flex items-center justify-between w-full hover:text-gray-300 transition-colors"
               >
                 <span>Developers</span>
                 <IoIosArrowForward />
               </Link>
-              
+
               <div className="mt-4 flex flex-col gap-3 w-full">
                 <Link
                   href="/login"

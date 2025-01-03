@@ -124,19 +124,20 @@ export function MarqueeDemo() {
 
 const Testimonials = () => {
   return (
-    <div className="bg-black w-full py-16">
+    <div className="bg-black w-full pt-20">
+      <div id="features" className="pt-[120px]"></div>
       <div className="relative max-w-[480px] m-auto">
-      <h1 className="text-white text-3xl lg:text-4xl font-semibold text-center">
-        Features That We Love
-      </h1>
-      <Image
+        <h1 className="text-white text-3xl lg:text-4xl font-semibold text-center">
+          Features That We Love
+        </h1>
+        <Image
           src={Shape7}
           width={200}
           height={200}
           alt="Shape7"
           className="absolute right-20 lg:right-0 rotate-[20deg] z-10"
         />
-        </div>
+      </div>
       <MarqueeDemo />
     </div>
   );
