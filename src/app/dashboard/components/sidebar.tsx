@@ -7,74 +7,74 @@ import { IoMailSharp } from "react-icons/io5";
 import Image from "next/image";
 
 const Sidebar = () => {
-  const [activeTab, setActiveTab] = useState("overview"); // Default active tab
+  const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="bg-gray-950 text-white w-64 h-screen grid grid-rows-[auto_1fr_auto] p-4">
+    <div className="bg-gray-900 text-gray-300 w-64 h-screen flex flex-col p-6 border-r border-gray-800">
       {/* Logo */}
-      <div className="flex justify-center mb-6">
-        <Image src="/logo.png" alt="Logo" width={150} height={100} />
+      <div className="flex justify-center mb-8">
+        <Image src="/logo.png" alt="Logo" width={150} height={100} className="opacity-90 hover:opacity-100 transition-opacity" />
       </div>
 
       {/* Menu */}
-      <div className="mb-8 mt-16">
-        <div className="text-2xl font-semibold text-gray-300 mb-6">Menu</div>
-        <ul className="space-y-4">
+      <div className="flex-1">
+        <div className="text-sm font-medium uppercase tracking-wider text-gray-500 mb-4">Menu</div>
+        <ul className="space-y-2">
           <li
-            className={`flex items-center space-x-3 cursor-pointer text-xl p-2 ${
+            className={`flex items-center space-x-3 cursor-pointer rounded-lg p-3 transition-all duration-200 group ${
               activeTab === "overview"
-                ? "text-[#5819e3] border-2 rounded-md p-2 border-[#5819e3] bg-[#5819e3]/10"
-                : "hover:text-gray-300"
+                ? "bg-indigo-500/10 text-indigo-400"
+                : "hover:bg-gray-800/50"
             }`}
             onClick={() => setActiveTab("overview")}
           >
-            <RxDashboard className="text-xl" />
-            <span>Overview</span>
+            <RxDashboard className={`text-lg ${activeTab === "overview" ? "text-indigo-400" : "group-hover:text-indigo-400"}`} />
+            <span className="text-sm font-medium">Overview</span>
           </li>
           <li
-            className={`flex items-center space-x-3 cursor-pointer text-xl p-2 ${
+            className={`flex items-center space-x-3 cursor-pointer rounded-lg p-3 transition-all duration-200 group ${
               activeTab === "statistics"
-                ? "text-[#5819e3] border-2 rounded-md p-2 border-[#5819e3] bg-[#5819e3]/10"
-                : "hover:text-gray-300"
+                ? "bg-indigo-500/10 text-indigo-400"
+                : "hover:bg-gray-800/50"
             }`}
             onClick={() => setActiveTab("statistics")}
           >
-            <IoStatsChartSharp className="text-xl" />
-            <span>Statistics</span>
+            <IoStatsChartSharp className={`text-lg ${activeTab === "statistics" ? "text-indigo-400" : "group-hover:text-indigo-400"}`} />
+            <span className="text-sm font-medium">Statistics</span>
           </li>
           <li
-            className={`flex items-center space-x-3 cursor-pointer text-xl p-2 ${
+            className={`flex items-center space-x-3 cursor-pointer rounded-lg p-3 transition-all duration-200 group ${
               activeTab === "customers"
-                ? "text-[#5819e3] border-2 rounded-md p-2 border-[#5819e3] bg-[#5819e3]/10"
-                : "hover:text-gray-300"
+                ? "bg-indigo-500/10 text-indigo-400"
+                : "hover:bg-gray-800/50"
             }`}
             onClick={() => setActiveTab("customers")}
           >
-            <RiChatSmileFill className="text-xl" />
-            <span>Customers</span>
+            <RiChatSmileFill className={`text-lg ${activeTab === "customers" ? "text-indigo-400" : "group-hover:text-indigo-400"}`} />
+            <span className="text-sm font-medium">Customers</span>
           </li>
           <li
-            className={`flex items-center space-x-3 cursor-pointer text-xl p-2 ${
+            className={`flex items-center space-x-3 cursor-pointer rounded-lg p-3 transition-all duration-200 group ${
               activeTab === "product"
-                ? "text-[#5819e3] border-2 rounded-md p-2 border-[#5819e3] bg-[#5819e3]/10"
-                : "hover:text-gray-300"
+                ? "bg-indigo-500/10 text-indigo-400"
+                : "hover:bg-gray-800/50"
             }`}
             onClick={() => setActiveTab("product")}
           >
-            <AiFillProduct className="text-xl" />
-            <span>Product</span>
+            <AiFillProduct className={`text-lg ${activeTab === "product" ? "text-indigo-400" : "group-hover:text-indigo-400"}`} />
+            <span className="text-sm font-medium">Product</span>
           </li>
           <li
-            className={`flex items-center space-x-3 cursor-pointer text-xl p-2 ${
+            className={`flex items-center space-x-3 cursor-pointer rounded-lg p-3 transition-all duration-200 group ${
               activeTab === "messages"
-                ? "text-[#5819e3] border-2 rounded-md p-2 border-[#5819e3] bg-[#5819e3]/10"
-                : "hover:text-gray-300"
+                ? "bg-indigo-500/10 text-indigo-400"
+                : "hover:bg-gray-800/50"
             }`}
             onClick={() => setActiveTab("messages")}
           >
-            <IoMailSharp className="text-xl" />
-            <span>Messages</span>
-            <span className="bg-[#5819e3] text-white rounded-full text-xs px-2 py-0.5">
+            <IoMailSharp className={`text-lg ${activeTab === "messages" ? "text-indigo-400" : "group-hover:text-indigo-400"}`} />
+            <span className="text-sm font-medium">Messages</span>
+            <span className="bg-indigo-500 text-white text-xs px-2 py-1 rounded-full ml-auto">
               13
             </span>
           </li>
@@ -82,13 +82,15 @@ const Sidebar = () => {
       </div>
 
       {/* Profile */}
-      <div className="flex items-center justify-center space-x-3 mt-6">
-        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black font-bold text-xl">
-          F
-        </div>
-        <div className="text-center">
-          <div className="font-bold text-lg">Fandaww Punx</div>
-          <div className="text-sm text-gray-500">fandaww6@gmail.com</div>
+      <div className="mt-auto pt-6 border-t border-gray-800">
+        <div className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800/50 transition-colors duration-200">
+          <div className="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-medium text-sm">
+            F
+          </div>
+          <div>
+            <div className="text-sm font-medium text-gray-200">Fandaww Punx</div>
+            <div className="text-xs text-gray-500">fandaww6@gmail.com</div>
+          </div>
         </div>
       </div>
     </div>

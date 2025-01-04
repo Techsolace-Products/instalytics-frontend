@@ -10,54 +10,60 @@ interface Sale {
   amount: string;
 }
 
-export function RecentSales() {
-  const [sales, setSales] = useState<Sale[]>([]);
+interface RecentSalesProps {
+  sales: Sale[]; // Prop for external sales data
+}
+
+export function RecentSales({ sales: initialSales }: RecentSalesProps) {
+  const [sales, setSales] = useState<Sale[]>(initialSales || []); // Using prop data or default to empty array
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Simulate fetching data with mock data
+  // Simulate fetching data with mock data if sales prop is empty
   useEffect(() => {
-    // Mock sales data
-    const mockSalesData: Sale[] = [
-      {
-        id: 1,
-        userName: "Olivia Martin",
-        userEmail: "olivia.martin@email.com",
-        userAvatar: "/avatars/01.png",
-        amount: "$1,999.00",
-      },
-      {
-        id: 2,
-        userName: "Jackson Lee",
-        userEmail: "jackson.lee@email.com",
-        userAvatar: "/avatars/02.png",
-        amount: "$39.00",
-      },
-      {
-        id: 3,
-        userName: "Isabella Nguyen",
-        userEmail: "isabella.nguyen@email.com",
-        userAvatar: "/avatars/03.png",
-        amount: "$299.00",
-      },
-      {
-        id: 4,
-        userName: "William Kim",
-        userEmail: "will@email.com",
-        userAvatar: "/avatars/04.png",
-        amount: "$99.00",
-      },
-      {
-        id: 5,
-        userName: "Sofia Davis",
-        userEmail: "sofia.davis@email.com",
-        userAvatar: "/avatars/05.png",
-        amount: "$39.00",
-      },
-    ];
+    if (initialSales.length === 0) {
+      // Mock sales data if no sales are passed as a prop
+      const mockSalesData: Sale[] = [
+        {
+          id: 1,
+          userName: "Olivia Martin",
+          userEmail: "olivia.martin@email.com",
+          userAvatar: "/avatars/01.png",
+          amount: "$1,999.00",
+        },
+        {
+          id: 2,
+          userName: "Jackson Lee",
+          userEmail: "jackson.lee@email.com",
+          userAvatar: "/avatars/02.png",
+          amount: "$39.00",
+        },
+        {
+          id: 3,
+          userName: "Isabella Nguyen",
+          userEmail: "isabella.nguyen@email.com",
+          userAvatar: "/avatars/03.png",
+          amount: "$299.00",
+        },
+        {
+          id: 4,
+          userName: "William Kim",
+          userEmail: "will@email.com",
+          userAvatar: "/avatars/04.png",
+          amount: "$99.00",
+        },
+        {
+          id: 5,
+          userName: "Sofia Davis",
+          userEmail: "sofia.davis@email.com",
+          userAvatar: "/avatars/05.png",
+          amount: "$39.00",
+        },
+      ];
 
-    setSales(mockSalesData);
-    setLoading(false); // Set loading to false once data is "fetched"
-  }, []);
+      setSales(mockSalesData);
+    }
+    setLoading(false); // Set loading to false once data is "fetched" or ready
+  }, [initialSales]);
 
   if (loading) {
     return <div>Loading...</div>;
