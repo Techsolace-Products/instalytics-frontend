@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +17,7 @@ import { Search } from "@/app/dashboard/components/search";
 import TeamSwitcher from "@/app/dashboard/components/team-switcher";
 import { UserNav } from "@/app/dashboard/components/user-nav";
 import Sidebar from "@/app/dashboard/components/sidebar";
+import { Menu } from "lucide-react";
 
 interface OverviewData {
   // Define properties of overviewData here
@@ -27,8 +28,10 @@ interface OverviewData {
 
 interface Sale {
   id: number;
-  amount: number;
-  date: string; // Adjust types as necessary
+  userName: string;
+  userEmail: string;
+  userAvatar: string;
+  amount: string;
 }
 
 interface DashboardData {
@@ -40,8 +43,8 @@ interface DashboardData {
   salesGrowth: string;
   activeNow: number;
   activeNowGrowth: string;
-  overviewData: OverviewData; // Use the defined type
-  recentSales: Sale[]; // Use the defined type
+  overviewData: OverviewData;
+  recentSales: Sale[];
 }
 
 const mockData: DashboardData = {
@@ -57,15 +60,50 @@ const mockData: DashboardData = {
     totalUsers: 500,
     totalSales: 300,
   },
-  recentSales: [], // Adjust as necessary
+  recentSales: [
+    {
+      id: 1,
+      userName: "Olivia Martin",
+      userEmail: "olivia.martin@email.com",
+      userAvatar: "/avatars/01.png",
+      amount: "$1,999.00",
+    },
+    {
+      id: 2,
+      userName: "Jackson Lee",
+      userEmail: "jackson.lee@email.com",
+      userAvatar: "/avatars/02.png",
+      amount: "$39.00",
+    },
+    {
+      id: 3,
+      userName: "Isabella Nguyen",
+      userEmail: "isabella.nguyen@email.com",
+      userAvatar: "/avatars/03.png",
+      amount: "$299.00",
+    },
+    {
+      id: 4,
+      userName: "William Kim",
+      userEmail: "will@email.com",
+      userAvatar: "/avatars/04.png",
+      amount: "$99.00",
+    },
+    {
+      id: 5,
+      userName: "Sofia Davis",
+      userEmail: "sofia.davis@email.com",
+      userAvatar: "/avatars/05.png",
+      amount: "$39.00",
+    },
+  ],
 };
 
 // ... [Previous interfaces and mock data remain the same]
 
-
-
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     const fetchData = () => {
@@ -87,16 +125,38 @@ export default function DashboardPage() {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
+      {/* Mobile Sidebar Toggle Button */}
+      <button
+        className="lg:hidden fixed z-50 bottom-4 right-4 bg-indigo-600 text-white p-3 rounded-full shadow-lg"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <Menu className="h-6 w-6" />
+      </button>
+
       {/* Sidebar */}
-      <div className="w-64 border-r border-gray-100 shrink-0 bg-white shadow-sm">
-        <Sidebar />
+      <div
+        className={`${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 fixed lg:static lg:shrink-0 z-40 transition-transform duration-300 ease-in-out`}
+      >
+        <Sidebar
+          collapsed={!sidebarOpen}
+          onToggle={() => setSidebarOpen(!sidebarOpen)}
+        />
       </div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Top Navigation Bar */}
-        <header className="border-b border-gray-100 sticky top-0 z-10 bg-white/80 backdrop-blur-sm">
-          <div className="flex h-16 items-center gap-4 px-6">
+        <header className="border-b border-gray-100 sticky top-0 z-30 bg-white/80 backdrop-blur-sm">
+          <div className="flex h-16 items-center gap-4 px-4 sm:px-6">
+            {/* Sidebar Toggle Button */}
+            <button
+              className="hidden lg:block text-gray-600 hover:text-gray-900"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
             <TeamSwitcher />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center gap-4">
@@ -210,7 +270,9 @@ export default function DashboardPage() {
                   {/* Sales Card */}
                   <Card className="bg-white/50 backdrop-blur-sm border-0 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-200">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-lg font-medium">Sales</CardTitle>
+                      <CardTitle className="text-lg font-medium">
+                        Sales
+                      </CardTitle>
                       <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -275,7 +337,7 @@ export default function DashboardPage() {
                       <Overview data={data.overviewData} />
                     </CardContent>
                   </Card>
-                  
+
                   <Card className="lg:col-span-3 bg-white/50 backdrop-blur-sm border-0 shadow-xl shadow-gray-200/50">
                     <CardHeader>
                       <CardTitle>Recent Sales</CardTitle>
