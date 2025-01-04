@@ -8,11 +8,11 @@ const Terms = () => {
       <Header />
       <br />
       <div className="max-w-[800px] text-white mt-[120px] m-auto p-10">
-        <h1 className="text-3xl font-bold mb-6">Terms & Conditions</h1>
+        <h1 className="text-3xl font-bold mb-6">Terms &amp; Conditions</h1>
         <p className="text-gray-300 mb-4">Effective Date: January 3, 2025</p>
         
         <p className="mb-6">
-          Welcome to InstaLytics ("we," "our," or "us"). These Terms & Conditions ("Terms") govern your access to and use of our social media analytics tool ("Tool"). By accessing or using InstaLytics, you agree to these Terms. If you do not agree, please refrain from using our Tool.
+          Welcome to InstaLytics (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;). These Terms &amp; Conditions (&ldquo;Terms&rdquo;) govern your access to and use of our social media analytics tool (&ldquo;Tool&rdquo;). By accessing or using InstaLytics, you agree to these Terms. If you do not agree, please refrain from using our Tool.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">1. Use of InstaLytics</h2>
@@ -86,7 +86,7 @@ const Terms = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">6. Limitation of Liability</h2>
         <ul className="list-disc pl-6 mb-4">
-          <li>InstaLytics is provided on an "as-is" and "as-available" basis.</li>
+          <li>InstaLytics is provided on an &ldquo;as-is&rdquo; and &ldquo;as-available&rdquo; basis.</li>
           <li>We do not guarantee the accuracy, reliability, or completeness of the analytics provided.</li>
           <li>To the fullest extent permitted by law, InstaLytics and its team shall not be held liable for:
             <ul className="list-disc pl-6 mt-2">
@@ -106,7 +106,7 @@ const Terms = () => {
         <p className="mb-4">Upon termination, your access to InstaLytics will be revoked, and any data associated with your account may be deleted.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">8. Updates to These Terms</h2>
-        <p className="mb-4">We may update these Terms periodically to reflect changes in our practices or applicable laws. The updated Terms will be posted with the "Effective Date" at the top, and continued use of InstaLytics constitutes your acceptance of the changes.</p>
+        <p className="mb-4">We may update these Terms periodically to reflect changes in our practices or applicable laws. The updated Terms will be posted with the &ldquo;Effective Date&rdquo; at the top, and continued use of InstaLytics constitutes your acceptance of the changes.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">9. Governing Law</h2>
         <p className="mb-4">These Terms are governed by the laws of India. Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of India.</p>

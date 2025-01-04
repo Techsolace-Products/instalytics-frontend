@@ -10,9 +10,9 @@ const privacy = () => {
       <div className="max-w-[800px] text-white mt-[120px] m-auto p-10">
         <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
         <p className="text-gray-300 mb-4">Effective Date: January 3, 2025</p>
-        
+
         <p className="mb-6">
-          Thank you for choosing InstaLytics ("we," "our," or "us"). This Privacy Policy explains how we collect, use, share, and protect your information when you use our social media analytics tool ("Tool"). Your privacy is important to us, and we are committed to being transparent about our practices.
+          Thank you for choosing InstaLytics (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). This Privacy Policy explains how we collect, use, share, and protect your information when you use our social media analytics tool (&quot;Tool&quot;). Your privacy is important to us, and we are committed to being transparent about our practices.
         </p>
 
         <p className="mb-6">
@@ -57,7 +57,7 @@ const privacy = () => {
           <li>Provide and maintain the functionality of InstaLytics.</li>
           <li>Analyze your social media data and deliver actionable insights.</li>
           <li>Personalize your experience, including dashboard customization.</li>
-          <li>Send updates and notifications (only if you've opted in).</li>
+          <li>Send updates and notifications (only if you&apos;ve opted in).</li>
           <li>Improve the performance, features, and security of InstaLytics.</li>
         </ul>
 
@@ -115,18 +115,16 @@ const privacy = () => {
         </ul>
         <p className="mb-4">You can manage or disable cookies through your browser settings. Note that disabling cookies may impact your experience.</p>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">8. Children's Privacy</h2>
+        <h2 className="text-2xl font-semibold mt-8 mb-4">8. Children&apos;s Privacy</h2>
         <p className="mb-4">InstaLytics is not intended for children under the age of 13, and we do not knowingly collect personal information from children. If you believe we have inadvertently collected such information, contact us immediately.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">9. Updates to This Privacy Policy</h2>
-        <p className="mb-4">We may update this Privacy Policy periodically to reflect changes in our practices or applicable laws. The updated policy will be posted with the "Effective Date" at the top.</p>
+        <p className="mb-4">We may update this Privacy Policy periodically to reflect changes in our practices or applicable laws. The updated policy will be posted with the &quot;Effective Date&quot; at the top.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">10. Contact Us</h2>
-        <p className="mb-4">
-          If you have any questions or concerns about this Privacy Policy or how we handle your data, please contact us:
-        </p>
+        <p className="mb-4">If you have any questions or concerns about this Privacy Policy or how we handle your data, please contact us:</p>
         <p className="mb-6">Email: contact@techsolace.in</p>
-        
+
         <p className="mt-8 text-gray-300">Thank you for trusting InstaLytics.</p>
       </div>
       <Footer />

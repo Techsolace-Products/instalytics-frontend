@@ -9,7 +9,6 @@ import { FaRegComments, FaRegHeart } from "react-icons/fa6";
 import { IoMdPaperPlane } from "react-icons/io";
 import { IoShareSocialOutline } from "react-icons/io5";
 import Footer from "@/components/core/Footer";
-import { ArrowRight } from "lucide-react";
 import { BsArrowRight } from "react-icons/bs";
 const page = () => {
   return (
