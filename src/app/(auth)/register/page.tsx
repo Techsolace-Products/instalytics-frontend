@@ -1,17 +1,52 @@
-import Header from "@/components/core/Header";
+"use client"
 import React from "react";
-import Shape2 from "@/../public/shape2.png";
-import Shape3 from "@/../public/shape3.png";
-import Shape4 from "@/../public/shape4.png";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Header from "@/components/core/Header";
+import Footer from "@/components/core/Footer";
+import { BsArrowRight } from "react-icons/bs";
 import { FaRegComments, FaRegHeart } from "react-icons/fa6";
 import { IoMdPaperPlane } from "react-icons/io";
 import { IoShareSocialOutline } from "react-icons/io5";
-import Footer from "@/components/core/Footer";
-import { ArrowRight } from "lucide-react";
-import { BsArrowRight } from "react-icons/bs";
-const page = () => {
+import Shape2 from "@/../public/shape2.png";
+import Shape3 from "@/../public/shape3.png";
+import Shape4 from "@/../public/shape4.png";
+import { AxiosError } from "axios";
+
+interface FormValues {
+  username: string;
+  email: string;
+  password: string;
+}
+
+// Define an interface for the expected error response
+interface ErrorResponse {
+  message: string;
+}
+
+const RegisterPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      const response = await axios.post("http://localhost:3000/v1/auth/register", data);
+      console.log(response.data);
+      toast.success("Registration successful!", { position: "top-center" });
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError<ErrorResponse>;
+      const errorMessage = axiosError?.response?.data?.message || "Something went wrong!";
+      toast.error(errorMessage, { position: "top-center" });
+    }
+  };
+
   return (
     <>
       <Header />
@@ -32,9 +67,7 @@ const page = () => {
       <div className="w-full h-screen bg-black flex items-center justify-center">
         <div className="w-full max-w-[480px] flex flex-col gap-5 m-auto p-10">
           <div className="relative">
-            <h1 className="text-white text-4xl font-bold">
-              Join the Revolution!
-            </h1>
+            <h1 className="text-white text-4xl font-bold">Join the Revolution!</h1>
             <Image
               src={Shape4}
               width={500}
@@ -45,32 +78,64 @@ const page = () => {
           </div>
 
           <p className="text-zinc-400 mt-8 text-sm">
-            Sign up to unlock the power of social media analytics and take
-            control of your growth.
+            Sign up to unlock the power of social media analytics and take control of your growth.
           </p>
 
-          <form className="flex flex-col gap-2">
-            <input
-              type="text"
-              placeholder="Username"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
-            />
-            <button className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+            <div>
+              <input
+                {...register("username", { required: "Username is required" })}
+                type="text"
+                placeholder="Username"
+                className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
+              />
+              {errors.username && (
+                <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>
+              )}
+            </div>
+            <div>
+              <input
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                type="email"
+                placeholder="Email"
+                className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+              )}
+            </div>
+            <div>
+              <input
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters",
+                  },
+                })}
+                type="password"
+                placeholder="Password"
+                className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
+              />
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+              )}
+            </div>
+            <button
+              type="submit"
+              className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4"
+            >
               Get Started <BsArrowRight />
             </button>
           </form>
           <p className="text-zinc-400 text-sm">
-            Already have account?{" "}
+            Already have an account?{" "}
             <Link href="/login" className="text-white hover:text-violet-400 transition-colors">
               Login
             </Link>
@@ -96,14 +161,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <p className="absolute bottom-0 left-[40px] text-white text-9xl font-semibold pacifico-regular opacity-50">
-        Join.
-      </p>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 };
 
-export default page;
+export default RegisterPage;

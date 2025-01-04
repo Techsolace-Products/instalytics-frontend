@@ -1,3 +1,4 @@
+"use client"
 import Header from "@/components/core/Header";
 import React from "react";
 import Shape2 from "@/../public/shape2.png";
@@ -9,9 +10,47 @@ import { FaRegComments, FaRegHeart } from "react-icons/fa6";
 import { IoMdPaperPlane } from "react-icons/io";
 import { IoShareSocialOutline } from "react-icons/io5";
 import Footer from "@/components/core/Footer";
-import { ArrowRight } from "lucide-react";
 import { BsArrowRight } from "react-icons/bs";
-const page = () => {
+import { useForm } from "react-hook-form";
+import axios, { AxiosError } from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
+
+interface ErrorResponse {
+  message: string;
+}
+
+
+const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
+
+  const onSubmit = async (data: LoginFormInputs) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/v1/auth/login",
+        data,
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(response)
+        toast.success("Login successful!");
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError<ErrorResponse>;
+
+      const errorMessage =
+      axiosError.response?.data?.message || "Something went wrong. Please try again.";
+      toast.error(errorMessage);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -49,17 +88,34 @@ const page = () => {
             Let me know if you want more flair or a different style!
           </p>
 
-          <form className="flex flex-col gap-2">
+          <form
+            className="flex flex-col gap-2"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <input
+              {...register("email", { required: "Email is required" })}
               type="text"
               placeholder="Email or Username"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
+              className={`w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 ${
+                errors.email ? "focus:ring-red-600" : "focus:ring-violet-600"
+              }`}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+
             <input
+              {...register("password", { required: "Password is required" })}
               type="password"
               placeholder="Password"
-              className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
+              className={`w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 ${
+                errors.password ? "focus:ring-red-600" : "focus:ring-violet-600"
+              }`}
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+
             <button className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4">
               Login <BsArrowRight />
             </button>
@@ -97,8 +153,9 @@ const page = () => {
       <div>
         <Footer />
       </div>
+      <ToastContainer position="top-center" />
     </>
   );
 };
 
-export default page;
+export default LoginPage;
