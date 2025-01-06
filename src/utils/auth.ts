@@ -11,4 +11,5 @@ export const getRefreshToken = () => Cookies.get('refreshToken');
 export const logout = () => {
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
+    window.location.reload()
 };

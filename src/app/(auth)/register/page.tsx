@@ -25,7 +25,6 @@ interface FormValues {
   password: string;
 }
 
-// Define an interface for the expected error response
 interface ErrorResponse {
   message: string;
 }
