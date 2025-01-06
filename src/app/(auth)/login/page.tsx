@@ -1,6 +1,6 @@
 "use client"
 import Header from "@/components/core/Header";
-import React from "react";
+import React, { useEffect } from "react";
 import Shape2 from "@/../public/shape2.png";
 import Shape3 from "@/../public/shape3.png";
 import Shape4 from "@/../public/shape4.png";
@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import axios, { AxiosError } from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAccessToken, setTokens } from "@/utils/auth";
 
 interface LoginFormInputs {
   email: string;
@@ -32,16 +33,25 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
+  const getToken = getAccessToken()
+
+  useEffect(() => {
+    if (getToken) {
+      window.location.href = "/";
+    }
+  }, [getToken]);
 
   const onSubmit = async (data: LoginFormInputs) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/v1/auth/login",
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/auth/login`,
         data,
         { headers: { "Content-Type": "application/json" } }
       );
       console.log(response)
-        toast.success("Login successful!");
+      toast.success("Login successful!");
+      setTokens(`${response.data.token}` , "")
+
     } catch (error: unknown) {
       const axiosError = error as AxiosError<ErrorResponse>;
 
@@ -54,6 +64,7 @@ const LoginPage = () => {
   return (
     <>
       <Header />
+
       <Image
         src={Shape2}
         width={120}

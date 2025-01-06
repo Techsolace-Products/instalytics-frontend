@@ -1,10 +1,10 @@
 "use client"
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "@/components/core/Header";
 import Footer from "@/components/core/Footer";
@@ -16,6 +16,8 @@ import Shape2 from "@/../public/shape2.png";
 import Shape3 from "@/../public/shape3.png";
 import Shape4 from "@/../public/shape4.png";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
+import { getAccessToken } from "@/utils/auth";
 
 interface FormValues {
   username: string;
@@ -34,12 +36,21 @@ const RegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
+  const router = useRouter()
+  const getToken = getAccessToken()
+
+  useEffect(() => {
+    if (getToken) {
+      window.location.href = "/";
+    }
+  }, [getToken]);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3000/v1/auth/register", data);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/register`, data);
       console.log(response.data);
-      toast.success("Registration successful!", { position: "top-center" });
+      toast.success("Registration successful! Login", { position: "top-center" });
+      router.push("/login")
     } catch (error: unknown) {
       const axiosError = error as AxiosError<ErrorResponse>;
       const errorMessage = axiosError?.response?.data?.message || "Something went wrong!";
@@ -50,6 +61,7 @@ const RegisterPage = () => {
   return (
     <>
       <Header />
+      <ToastContainer />
       <Image
         src={Shape2}
         width={120}

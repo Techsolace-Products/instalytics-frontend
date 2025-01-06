@@ -6,11 +6,12 @@ import Logo from "@/../public/logo.png";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiMenu, HiX } from "react-icons/hi";
 import { IoIosArrowForward } from "react-icons/io";
+import { getAccessToken, logout } from "@/utils/auth";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const token = getAccessToken();
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -24,6 +25,10 @@ const Header = () => {
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout()
   };
 
   return (
@@ -68,18 +73,37 @@ const Header = () => {
             </div>
 
             <div className="hidden lg:flex flex-[1] flex-wrap gap-2 items-center justify-end">
-              <Link
-                href="/login"
-                className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="border-white border-[2px] px-3 py-2 text-sm text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-transparent hover:text-white transition-all duration-300"
-              >
-                Get Started <MdKeyboardDoubleArrowRight />
-              </Link>
+              {!token ? (
+                <>
+                  <Link
+                    href="/login"
+                    className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-white hover:text-black transition-all duration-300"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="border-white border-[2px] px-3 py-2 text-sm text-black bg-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-transparent hover:text-white transition-all duration-300"
+                  >
+                    Get Started <MdKeyboardDoubleArrowRight />
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-white hover:text-black transition-all duration-300"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-white hover:text-black transition-all duration-300"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </div>
           </div>
 

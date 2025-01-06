@@ -1,7 +1,14 @@
-export const getAccessToken = (): string | null => {
-  return localStorage.getItem("accessToken");
+import Cookies from 'js-cookie';
+
+export const setTokens = (accessToken: string, refreshToken: string) => {
+    Cookies.set('accessToken', accessToken, { expires: 7 }); 
+    Cookies.set('refreshToken', refreshToken, { expires: 30 }); 
 };
 
-export const logout = (): void => {
-  localStorage.removeItem("accessToken");
+export const getAccessToken = () => Cookies.get('accessToken');
+export const getRefreshToken = () => Cookies.get('refreshToken');
+
+export const logout = () => {
+    Cookies.remove('accessToken');
+    Cookies.remove('refreshToken');
 };
