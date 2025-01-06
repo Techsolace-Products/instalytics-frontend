@@ -37,6 +37,7 @@ const RegisterPage = () => {
   } = useForm<FormValues>();
   const router = useRouter()
   const getToken = getAccessToken()
+  const [loading, setLoading] = React.useState(false);
 
   useEffect(() => {
     if (getToken) {
@@ -45,6 +46,7 @@ const RegisterPage = () => {
   }, [getToken]);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setLoading(true);
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/register`, data);
       console.log(response.data);
@@ -54,6 +56,8 @@ const RegisterPage = () => {
       const axiosError = error as AxiosError<ErrorResponse>;
       const errorMessage = axiosError?.response?.data?.message || "Something went wrong!";
       toast.error(errorMessage, { position: "top-center" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -141,8 +145,9 @@ const RegisterPage = () => {
             <button
               type="submit"
               className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4"
+              disabled={loading}
             >
-              Get Started <BsArrowRight />
+              {loading ? "Loading..." : "Get Started"} <BsArrowRight />
             </button>
           </form>
           <p className="text-zinc-400 text-sm">

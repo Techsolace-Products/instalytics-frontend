@@ -1,6 +1,6 @@
 "use client"
 import Header from "@/components/core/Header";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Shape2 from "@/../public/shape2.png";
 import Shape3 from "@/../public/shape3.png";
 import Shape4 from "@/../public/shape4.png";
@@ -34,6 +34,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<LoginFormInputs>();
   const getToken = getAccessToken()
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (getToken) {
@@ -42,6 +43,7 @@ const LoginPage = () => {
   }, [getToken]);
 
   const onSubmit = async (data: LoginFormInputs) => {
+    setLoading(true);
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/v1/auth/login`,
@@ -58,6 +60,8 @@ const LoginPage = () => {
       const errorMessage =
       axiosError.response?.data?.message || "Something went wrong. Please try again.";
       toast.error(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -127,8 +131,11 @@ const LoginPage = () => {
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
 
-            <button className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4">
-              Login <BsArrowRight />
+            <button 
+              className="transition w-full p-2 rounded-lg mt-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold flex flex-wrap items-center justify-center gap-2 hover:gap-4"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Login"} <BsArrowRight />
             </button>
           </form>
           <p className="text-zinc-400 text-sm">
