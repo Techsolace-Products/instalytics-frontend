@@ -21,7 +21,7 @@ const Sidebar = ({ collapsed = false }: SidebarProps) => {
   const [activeTab, setActiveTab] = useState("overview");
 
   const menuItems: MenuItem[] = [
-    { id: "overview", icon: RxDashboard, label: "Overview", badge: "New" },
+    { id: "overview", icon: RxDashboard, label: "Overview", badge: "" },
     { id: "posts", icon: IoStatsChartSharp, label: "Posts" },
   ];
 
@@ -70,14 +70,14 @@ const Sidebar = ({ collapsed = false }: SidebarProps) => {
               className={`flex items-center ${
                 collapsed ? "justify-center p-2" : "space-x-3 p-4"
               } cursor-pointer rounded-lg transition-all duration-200 group ${
-                activeTab === item.id
-                  ? "bg-indigo-500/10 text-indigo-400"
-                  : "hover:bg-gray-800/50"
+                "hover:bg-gray-800/50"
               }`}
               onClick={() => {
                 setActiveTab(item.id);
                 if (item.id === "posts") {
                   window.location.href = "/dashboard/posts";
+                } else if (item.id === "overview") {
+                  window.location.href = "/dashboard";
                 }
               }}
             >

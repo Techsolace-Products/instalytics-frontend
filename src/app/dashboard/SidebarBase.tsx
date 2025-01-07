@@ -9,7 +9,7 @@ const SidebarLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className=" flex">
+    <div className="bg-white flex">
       <button
         className="lg:hidden fixed z-50 bottom-4 right-4 bg-indigo-600 text-white p-3 rounded-full shadow-lg"
         onClick={() => setSidebarOpen(!sidebarOpen)}
