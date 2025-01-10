@@ -22,14 +22,14 @@ const Sidebar = ({ collapsed = false }: SidebarProps) => {
 
   const menuItems: MenuItem[] = [
     { id: "overview", icon: RxDashboard, label: "Overview", badge: "" },
-    { id: "posts", icon: IoStatsChartSharp, label: "Posts" },
+    { id: "posts", icon: IoStatsChartSharp, label: "Posts" }
   ];
 
   return (
     <div
       className={`${
         collapsed ? "w-24" : "w-64"
-      } bg-gray-900 text-gray-300 h-screen flex flex-col p-6 border-r border-gray-800 transition-all duration-300 ease-in-out`}
+      } bg-gray-900 text-gray-300 h-screen flex flex-col p-6 border-r border-gray-800 transition-all duration-300 ease-in-out absolute`}
     >
       {/* Logo */}
       <div className="flex justify-center mb-8">
@@ -69,9 +69,7 @@ const Sidebar = ({ collapsed = false }: SidebarProps) => {
               key={item.id}
               className={`flex items-center ${
                 collapsed ? "justify-center p-2" : "space-x-3 p-4"
-              } cursor-pointer rounded-lg transition-all duration-200 group ${
-                "hover:bg-gray-800/50"
-              }`}
+              } cursor-pointer rounded-lg transition-all duration-200 group ${"hover:bg-gray-800/50"}`}
               onClick={() => {
                 setActiveTab(item.id);
                 if (item.id === "posts") {
