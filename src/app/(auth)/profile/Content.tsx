@@ -17,8 +17,8 @@ const Hero = () => {
   const user = useUser();
 
   if (!user) {
-    window.location.href = '/';
-    return null; 
+    window.location.href = "/";
+    return null;
   }
 
   const username = user.user?.username || "Guest";
@@ -53,11 +53,46 @@ const Hero = () => {
             className="m-auto lg:absolute lg:right-0 lg:bottom-[-60px] opacity-80 lg:w-[500px] w-[300px]"
           />
         </div>
-        <p className="text-white text-opacity-80 text-lg lg:mt-20">
-          A cutting-edge AI-powered tool designed to skyrocket your social media
-          reels! With smart analytics at its core, it delivers powerful insights
-          to help you grow faster and smarter than ever.
-        </p>
+        <div className="w-full overflow-y-scroll  p-8 h-[400px] bg-zinc-800 rounded-lg border-[1px] border-zinc-950 mt-[40px] m-5">
+          <p className="text-xs text-white">
+            📊 <strong>Post Performance Analysis:</strong> Review your posts’
+            engagement metrics (likes, comments, shares, etc.) to see which one
+            had the highest interaction rate.
+            <br />
+            <strong>Identify Patterns:</strong> Was it a video, a high-quality
+            image, or an interactive post like a poll? Understanding the type of
+            content that resonates with your audience helps replicate success.
+            <br />
+            <br />
+            📅 <strong>Optimizing Posting Time:</strong> Check when your
+            audience is most active. Use your platform&quot;s analytics tools
+            (like Facebook Insights, Instagram Analytics, etc.) to see what
+            times your followers are online the most. Post during peak
+            times—usually early mornings (7-9 AM) or evenings (6-9 PM) based on
+            your audience&quot;s time zone.
+            <br />
+            <br />
+            📈 <strong>Using Analytics to Increase Reach:</strong> Track post
+            reach, engagement, and follower growth. Look at the types of posts
+            with high reach and engagement. For instance, posts with high
+            engagement could signal that your audience prefers specific topics,
+            formats, or hashtags.
+            <br />
+            Use tools like Instagram Insights, Twitter Analytics, or Google
+            Analytics to understand your audience&quot;s behavior and interests.
+            Experiment with hashtags, geotags, and cross-promotions to increase
+            your visibility.
+            <br />
+            <br />
+            ❤️ <strong>Average Engagement Rate:</strong>
+            <em>Formula:</em> (Total Engagements ÷ Total Followers) x 100 =
+            Engagement Rate %. A typical engagement rate is around 1-5% for most
+            accounts, but this can vary based on your niche, content, and
+            audience size. Track this over time to understand whether engagement
+            is increasing or decreasing. If it&quot;s low, consider adjusting
+            content strategy or testing new content types.
+          </p>
+        </div>
         <div className="flex flex-wrap items-center justify-between gap-8">
           <FaRegComments
             className="text-white p-2 bg-purple-700 rounded-lg transform transition-all duration-300 hover:scale-110 hover:bg-purple-800 cursor-pointer"
@@ -77,7 +112,7 @@ const Hero = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap gap-8 flex-row mt-20 p-10">
+      <div className="flex flex-wrap flex-col gap-8 lg:flex-row mt-20 p-10">
         <div className="flex-[1.2]">
           <ChartOne />
         </div>
@@ -96,7 +131,7 @@ const Hero = () => {
         width={100}
         height={100}
         alt="Shape4"
-        className="m-auto lg:right-[40px] fixed bottom-[50px] opacity-80 lg:w-[100px] w-[100px]"
+        className="m-auto right-[40px] fixed bottom-[50px] opacity-80 lg:w-[100px] w-[100px]"
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "@/../public/authorLogo.png";
 import Image from "next/image";
-import { FaGithub } from "react-icons/fa6";
+import { FaCode, FaGithub } from "react-icons/fa6";
 import Shape6 from "@/../public/shape6.png";
 import Link from "next/link";
 const Team = () => {
@@ -31,6 +31,22 @@ const Team = () => {
             champions, united by a shared mission to craft the ultimate platform
             for celebrating and sharing the journeys of builders everywhere.
           </p>
+
+<div className="flex flex-wrap items-center justify-center">
+<span className="text-black flex flex-wrap gap-2 items-center px-4 py-1 bg-white rounded-full font-bold text-xs">
+              <FaCode size={25} /> Kartikey Shukla
+            </span>
+            <span className="text-black flex flex-wrap gap-2 items-center px-4 py-1 bg-white rounded-full font-bold text-xs">
+              <FaCode size={25} /> Rohan Puri
+            </span>
+            <span className="text-black flex flex-wrap gap-2 items-center px-4 py-1 bg-white rounded-full font-bold text-xs">
+              <FaCode size={25} /> Pranav Kumar
+            </span>
+            <span className="text-black flex flex-wrap gap-2 items-center px-4 py-1 bg-white rounded-full font-bold text-xs">
+              <FaCode size={25} /> Samarth Mahapatra
+            </span>
+</div>
+
           <Image
             src={Logo}
             width={150}

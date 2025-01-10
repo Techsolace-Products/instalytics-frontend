@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Send, Loader } from 'lucide-react';
+import { Send, Loader, X } from 'lucide-react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Message {
@@ -24,13 +24,20 @@ const ChatPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement | null>(null);
 
+  const suggestions = [
+    "Which of my posts performed best, and how can I improve future ones?",
+    "How can I use analytics to increase my page's reach?",
+    "What time should I post to maximize likes and comments?",
+    "What’s the average engagement rate of my posts?"
+  ];
+
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
-  const handleSubmit = async (): Promise<void> => {
+  const handleSubmit = async (message: string): Promise<void> => {
     setIsLoading(true);
     if (!API_TOKEN) {
       setError("API token not configured");
@@ -47,7 +54,7 @@ const ChatPage: React.FC = () => {
           Authorization: `Bearer ${API_TOKEN}`
         },
         body: JSON.stringify({
-          message: input,
+          message,
           input_type: "chat",
           output_type: "chat"
         })
@@ -73,18 +80,22 @@ const ChatPage: React.FC = () => {
     }
   };
 
-  const sendMessage = async (): Promise<void> => {
-    if (!input.trim()) return;
+  const sendMessage = async (message: string): Promise<void> => {
+    if (!message.trim()) return;
 
     const userMessage: Message = {
       role: "user",
-      content: input,
+      content: message,
       timestamp: new Date()
     };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
-    await handleSubmit();
+    await handleSubmit(message);
+  };
+
+  const handleSuggestionClick = async (suggestion: string): Promise<void> => {
+    await sendMessage(suggestion);
   };
 
   const formatTimestamp = (date: Date): string =>
@@ -97,9 +108,21 @@ const ChatPage: React.FC = () => {
     });
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col bg-black text-white">
+      <div className="bg-zinc-800 text-white p-4 shadow-lg sticky top-0 z-10 flex justify-between items-center">
+        <h1 className="text-xl font-bold">Chat Assistant</h1>
+        <button
+          className="p-2 rounded-full hover:bg-zinc-700"
+          onClick={() => window.close()}
+        >
+          <X className="h-5 w-5" />
+        </button>
+      </div>
       <Card className="flex-1 flex flex-col overflow-hidden bg-black text-xs border-[1px] border-zinc-900">
-        <ScrollArea className="flex-1 text-xs p-4" ref={scrollAreaRef}>
+        <ScrollArea
+          className="flex-1 text-xs p-4 flex flex-col justify-end"
+          ref={scrollAreaRef}
+        >
           <CardContent className="space-y-4">
             <AnimatePresence>
               {messages.map((message, index) => (
@@ -144,13 +167,26 @@ const ChatPage: React.FC = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+            {messages.length === 0 && (
+              <div className="space-y-2">
+                {suggestions.map((suggestion, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="block text-left w-full p-2 bg-zinc-800 text-white rounded-md hover:bg-zinc-700"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            )}
           </CardContent>
         </ScrollArea>
         <div className="p-4 border-t border-zinc-900">
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              sendMessage();
+              sendMessage(input);
             }}
             className="flex gap-2"
           >
@@ -161,7 +197,7 @@ const ChatPage: React.FC = () => {
               disabled={isLoading}
               className="flex-1 text-white border border-zinc-900 rounded-lg"
             />
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="bg-purple-700 hover:bg-purple-800 text-white rounded-lg">
               {isLoading ? (
                 <Loader className="animate-spin h-4 w-4" />
               ) : (
@@ -181,4 +217,3 @@ const ChatPage: React.FC = () => {
 };
 
 export default ChatPage;
-

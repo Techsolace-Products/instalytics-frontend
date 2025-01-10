@@ -54,7 +54,7 @@ const Header = () => {
     ) : (
       <>
         <Link
-          href="/dashboard"
+          href="/profile"
           className="border-white border-[2px] px-3 py-2 text-sm text-white rounded-2xl flex flex-wrap items-center gap-2 font-semibold hover:bg-white hover:text-black transition-all duration-300"
         >
           Dashboard

@@ -6,7 +6,7 @@ import PostHero from "@/components/core/PostHero";
 import Testimonials from "@/components/core/Testimonials";
 import Team from "@/components/core/Team";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { getAccessToken } from "@/utils/auth";
 
 export default function Home() {

@@ -14,9 +14,9 @@ const PopupChat: React.FC = () => {
     <>
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 rounded-full p-4"
+        className="fixed bottom-4 right-4 rounded-full p-5 bg-blue-600"
       >
-        <MessageCircle size={24} />
+        <MessageCircle size={60} />
       </Button>
       <AnimatePresence>
         {isOpen && (
