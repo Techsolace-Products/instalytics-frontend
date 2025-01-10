@@ -30,7 +30,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
                             'Authorization': `Bearer ${accessToken}`
                         }
                     });
-                    setUser(response.data.data);
+                    setUser(response.data);
                 }
             } catch (error) {
                 console.error('Failed to fetch user:', error);
