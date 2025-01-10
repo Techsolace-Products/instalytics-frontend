@@ -3,7 +3,7 @@ import { FaRegComments } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { IoMdPaperPlane } from "react-icons/io";
 import { IoShareSocialOutline } from "react-icons/io5";
-import ChartOne from "./charts/chartOne";
+import ChartOne from "./charts/ChartOne";
 import ChartTwo from "./charts/ChartTwo";
 import ChartThree from "./charts/ChartThree";
 import Image from "next/image";
