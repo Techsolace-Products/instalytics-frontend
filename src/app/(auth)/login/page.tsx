@@ -110,7 +110,8 @@ const LoginPage = () => {
             <input
               {...register("email", { required: "Email is required" })}
               type="text"
-              placeholder="Email or Username"
+              placeholder="Email"
+              maxLength={40}
               className={`w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 ${
                 errors.email ? "focus:ring-red-600" : "focus:ring-violet-600"
               }`}
@@ -123,6 +124,7 @@ const LoginPage = () => {
               {...register("password", { required: "Password is required" })}
               type="password"
               placeholder="Password"
+              maxLength={25}
               className={`w-full p-2 rounded-lg bg-zinc-900 text-white transition-all duration-300 hover:bg-zinc-800 focus:outline-none focus:ring-2 ${
                 errors.password ? "focus:ring-red-600" : "focus:ring-violet-600"
               }`}

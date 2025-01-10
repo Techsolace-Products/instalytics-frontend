@@ -195,6 +195,7 @@ const ChatPage: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message..."
               disabled={isLoading}
+              maxLength={130}
               className="flex-1 text-white border border-zinc-900 rounded-lg"
             />
             <Button type="submit" disabled={isLoading} className="bg-purple-700 hover:bg-purple-800 text-white rounded-lg">

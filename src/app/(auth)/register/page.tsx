@@ -101,6 +101,7 @@ const RegisterPage = () => {
               <input
                 {...register("username", { required: "Username is required" })}
                 type="text"
+                maxLength={30}
                 placeholder="Username"
                 className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
               />
@@ -118,6 +119,7 @@ const RegisterPage = () => {
                   },
                 })}
                 type="email"
+                maxLength={45}
                 placeholder="Email"
                 className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
               />
@@ -135,6 +137,7 @@ const RegisterPage = () => {
                   },
                 })}
                 type="password"
+                maxLength={30}
                 placeholder="Password"
                 className="w-full p-2 rounded-lg bg-zinc-900 text-white transition-all hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-600"
               />
