@@ -1,8 +1,22 @@
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
 import PopupChat from "./Popup";
 import Header from "@/components/core/Header";
 import Content from "./Content";
-const page = () => {
+import { getAccessToken } from "@/utils/auth";
+import { useRouter } from "next/navigation";
+
+const Page = () => {
+  const token = getAccessToken();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/");
+    }
+  }, [token, router]);
+
+
   return (
     <>
       <Header />
@@ -12,4 +26,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

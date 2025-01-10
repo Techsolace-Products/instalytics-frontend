@@ -12,7 +12,17 @@ import Shape2 from "@/../public/shape2.png";
 import Shape3 from "@/../public/shape3.png";
 import Shape4 from "@/../public/shape4.png";
 import Shape8 from "@/../public/shape8.png";
+import { useUser } from "@/actions/UserContext";
 const Hero = () => {
+  const user = useUser();
+
+  if (!user) {
+    window.location.href = '/';
+    return null; 
+  }
+
+  const username = user.user?.username || "Guest";
+
   return (
     <div className="max-w-[1000px] m-auto">
       <div className="flex gap-8 flex-col items-center justify-center w-full mb-2">
@@ -33,7 +43,7 @@ const Hero = () => {
         />
         <div className="relative">
           <h1 className="text-5xl lg:text-7xl font-bold text-white">
-            Welcome Your Name,
+            Welcome {username} {username === "Guest" ? "..." : ","}
           </h1>
           <Image
             src={Shape4}
